@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\skaffold\kompose.exe convert
+    kompose.version: 1.26.0 (40646f47)
+  labels:
+    io.kompose.service: service-two
+  name: service-two
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: service-two
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\skaffold\kompose.exe convert
+        kompose.version: 1.26.0 (40646f47)
+      labels:
+        io.kompose.service: service-two
+    spec:
+      containers:
+        - image: vishalsvisual/service-two:latest
+          imagePullPolicy: IfNotPresent
+          name: service-two
+          ports:
+            - containerPort: 8081
+          resources: {}
+      restartPolicy: Always
+status: {}
